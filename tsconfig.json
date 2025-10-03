@@ -3,15 +3,16 @@
     // "rootDir": "./src",
     // "outDir": "./dist",
     "module": "nodenext",
+    "typeRoots": [
+      "./src/@types"
+    ],
     "target": "es2023",
     "moduleResolution": "nodenext",
     // "types": [],
     "lib": [
       "ES2023"
     ],
-    "types": [
-      "node"
-    ],
+    // "types": [],
     "sourceMap": true,
     "declaration": true,
     "declarationMap": true,
