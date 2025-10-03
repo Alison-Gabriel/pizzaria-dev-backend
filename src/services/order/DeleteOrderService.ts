@@ -1,0 +1,16 @@
+import prismaClient from "../../prisma/index.js";
+
+interface OrderRequest {
+  order_id: string;
+}
+
+class DeleteOrderService {
+  async execute({ order_id }: OrderRequest) {
+    const order = await prismaClient.order.delete({
+      where: { id: order_id },
+    });
+    return order;
+  }
+}
+
+export { DeleteOrderService };
