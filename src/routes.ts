@@ -38,19 +38,24 @@ router.get(
 );
 
 // Product
+router.get("/products", isAuthenticated, new ListByCategoryController().handle);
 router.post(
   "/product",
   isAuthenticated,
   upload.single("file"),
   new CreateProductController().handle
 );
-router.get("/products", isAuthenticated, new ListByCategoryController().handle);
 
 // Order
 router.post("/order", isAuthenticated, new CreateOrderController().handle);
 router.delete("/order", isAuthenticated, new DeleteOrderController().handle);
-router.patch("/order", isAuthenticated, new FinishOrderController().handle);
 router.get("/orders", isAuthenticated, new ListOrdersController().handle);
+router.patch(
+  "/order/finish",
+  isAuthenticated,
+  new FinishOrderController().handle
+);
+router.patch("/order/conclude");
 
 // Order => Item
 router.post("/order/item", isAuthenticated, new AddItemController().handle);
