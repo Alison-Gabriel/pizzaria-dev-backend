@@ -20,10 +20,12 @@ import { OrderDetailsController } from "./controllers/order/OrderDetailsControll
 const router = Router();
 const upload = multer(uploadConfig.upload("tmp"));
 
+// User
 router.post("/user", new CreateUserController().handle);
-router.post("/session", new AuthUserController().handle);
+router.post("/auth", new AuthUserController().handle);
 router.get("/me", isAuthenticated, new DetailUserController().handle);
 
+// Category
 router.post(
   "/category",
   isAuthenticated,
@@ -35,6 +37,7 @@ router.get(
   new ListCategoriesController().handle
 );
 
+// Product
 router.post(
   "/product",
   isAuthenticated,
@@ -43,19 +46,21 @@ router.post(
 );
 router.get("/products", isAuthenticated, new ListByCategoryController().handle);
 
+// Order
 router.post("/order", isAuthenticated, new CreateOrderController().handle);
 router.delete("/order", isAuthenticated, new DeleteOrderController().handle);
 router.patch("/order", isAuthenticated, new FinishOrderController().handle);
 router.get("/orders", isAuthenticated, new ListOrdersController().handle);
 
-router.post("/order-item", isAuthenticated, new AddItemController().handle);
+// Order => Item
+router.post("/order/item", isAuthenticated, new AddItemController().handle);
 router.delete(
-  "/order-item",
+  "/order/item",
   isAuthenticated,
   new DeleteItemController().handle
 );
 router.get(
-  "/order-items",
+  "/order/items",
   isAuthenticated,
   new OrderDetailsController().handle
 );
