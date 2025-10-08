@@ -13,12 +13,12 @@ class AuthUserService {
       where: { email },
     });
     if (!user) {
-      throw new Error("Incorrect email or password");
+      throw new Error("E-mail ou senha incorretos.");
     }
 
     const passwordMatch = await compare(password, user.password);
     if (!passwordMatch) {
-      throw new Error("Incorrect email or password");
+      throw new Error("E-mail ou senha incorretos.");
     }
 
     const token = jwt.sign(

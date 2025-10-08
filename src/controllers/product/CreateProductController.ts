@@ -8,7 +8,7 @@ class CreateProductController {
     const createProductService = new CreateProductService();
 
     if (!req.file) {
-      throw new Error("Error on upload file");
+      throw new Error("Erro ao salvar imagem.");
     }
 
     const { filename: banner } = req.file;
