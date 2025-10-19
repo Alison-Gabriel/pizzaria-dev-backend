@@ -12,7 +12,7 @@ export const isAuthenticated = (
 ) => {
   const authToken = req.headers.authorization;
   if (!authToken) {
-    return res.status(401).end();
+    return res.status(401).json({ message: "Usuário nao autenticado." });
   }
 
   const token = authToken.replace(/\s?Bearer\s?/, "");
@@ -24,6 +24,6 @@ export const isAuthenticated = (
 
     return next();
   } catch (err) {
-    return res.status(400).end();
+    return res.status(400).end({ message: "Erro ao validar usuário." });
   }
 };
