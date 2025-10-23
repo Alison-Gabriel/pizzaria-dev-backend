@@ -5,6 +5,10 @@ class CreateProductController {
   async handle(req: Request, res: Response) {
     const { name, price, description, category_id } = req.body;
 
+    if (!name || !price || !description || !category_id) {
+      throw new Error("Todas as informacoes do produto sao obrigatorias.");
+    }
+
     const createProductService = new CreateProductService();
 
     if (!req.file) {
