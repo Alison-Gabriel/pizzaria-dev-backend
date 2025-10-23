@@ -15,6 +15,13 @@ class CreateProductController {
       throw new Error("Erro ao salvar imagem.");
     }
 
+    const maxImageSizeInMb = 1;
+    if (req.file.size > maxImageSizeInMb * 1024 * 1024) {
+      throw new Error(
+        `A imagem nao pode pesar mais que ${maxImageSizeInMb}MB.`
+      );
+    }
+
     const { filename: banner } = req.file;
 
     const product = await createProductService.execute({
