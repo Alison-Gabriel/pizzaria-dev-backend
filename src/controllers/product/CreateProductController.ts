@@ -6,7 +6,7 @@ class CreateProductController {
     const { name, price, description, category_id } = req.body;
 
     if (!name || !price || !description || !category_id) {
-      throw new Error("Todas as informacoes do produto sao obrigatorias.");
+      throw new Error("Insira corretamente todos os dados do produto.");
     }
 
     const createProductService = new CreateProductService();
