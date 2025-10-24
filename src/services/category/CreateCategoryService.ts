@@ -10,9 +10,9 @@ class CreateCategoryService {
       throw new Error("Nome da categoria inválido.");
     }
     const categoryAlreadyExists = await prismaClient.category.findFirst({
-      where: { name: { mode: "insensitive" } },
+      where: { name: { mode: "insensitive", equals: name } },
     });
-    if (!!categoryAlreadyExists) {
+    if (categoryAlreadyExists) {
       throw new Error("Essa categoria ja existe.");
     }
     const category = await prismaClient.category.create({
